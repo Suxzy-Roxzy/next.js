@@ -1,8 +1,6 @@
 import React from "react";
 
-const TodoForm = ({
-    setTodolist,
-}) => {
+const TodoForm = ({ setTodolist }) => {
   // State to update the todo list
   const handleSubmit = (e) => {
     e.preventDefault();

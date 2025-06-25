@@ -1,7 +1,7 @@
 "use client";
 import TodoComponent from "@/components/todo";
 import TodoForm from "@/components/todoform";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // const todos = [
 //   {
@@ -26,6 +26,27 @@ import { useState } from "react";
 
 export default function Home() {
   const [todolist, setTodolist] = useState([]);
+  const [isediting, setIsediting]= useState(false)
+
+  // CHECK IF ITEM ALREADY EXISTS
+  const localStorageItems = (e) => {
+    const lsItems = localStorage.getItem("todos")
+
+    
+  }
+
+  // #Getting items from local storage and persisting them.
+  useEffect(() => {
+    const saved = localStorage.getItem("todos");
+    if (saved && saved !== "undefined") {
+      setTodolist(JSON.parse(saved));
+    }
+  }, []);
+
+  // Storing item into the local storage.
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todolist));
+  }, [todolist]);
 
   return (
     <div className="flex flex-col items-center bg-gray-100 min-h-screen py-10">

@@ -1,6 +1,13 @@
 import React from "react";
 
 const TodoComponent = ({ task, description }) => {
+
+  // // REMOVING ELEMENTS FROM THE DOM
+  // const deleteComponent = () => {
+  //   TodoComponent.
+  // };
+
+
   return (
     <div className="my-3 w-[700px] mx-auto bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
       <div className="flex items-start justify-between">
@@ -16,7 +23,7 @@ const TodoComponent = ({ task, description }) => {
 
       <div className="flex justify-end gap-2 mt-4">
         <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">
-          edit Todo
+          Edit
         </button>
         <button className="bg-red-500 text-white px-4 py-2 rounded mt-2 ml-2">
           Delete
