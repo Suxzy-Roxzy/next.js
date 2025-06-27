@@ -30,8 +30,7 @@ export default function Home() {
 
   // CHECK IF ITEM ALREADY EXISTS
   const localStorageItems = (e) => {
-    const lsItems = localStorage.getItem("todos")
-
+    
     
   }
 

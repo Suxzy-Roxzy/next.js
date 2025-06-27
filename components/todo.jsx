@@ -3,10 +3,12 @@ import React from "react";
 const TodoComponent = ({ task, description }) => {
 
   // // REMOVING ELEMENTS FROM THE DOM
+
   // const deleteComponent = () => {
   //   TodoComponent.
   // };
 
+  
 
   return (
     <div className="my-3 w-[700px] mx-auto bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
