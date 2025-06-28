@@ -26,13 +26,15 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [todolist, setTodolist] = useState([]);
-  const [isediting, setIsediting]= useState(false)
+  const [isediting, setIsediting] = useState(false);
+  const [currenttodo, setCurrenttodo] = useState({
+    id: "",
+    title: "",
+    description: "",
+  });
 
   // CHECK IF ITEM ALREADY EXISTS
-  const localStorageItems = (e) => {
-    
-    
-  }
+  const localStorageItems = (e) => {};
 
   // #Getting items from local storage and persisting them.
   useEffect(() => {
@@ -53,13 +55,22 @@ export default function Home() {
         Welcome to My Todo App
       </h1>
       {/* input form */}
-      <TodoForm setTodolist={setTodolist} />
+      <TodoForm
+        setTodolist={setTodolist}
+        isediting={isediting}
+        currenttodo={currenttodo}
+        setIsediting={setIsediting}
+        setCurrenttodo={setCurrenttodo}
+      />
 
       {/* display */}
       {todolist.map((todo) => (
         <TodoComponent
-          task={todo.title}
-          description={todo.description}
+          isediting={isediting}
+          currenttodo={currenttodo}
+          setIsediting={setIsediting}
+          setCurrenttodo={setCurrenttodo}
+          todo={todo}
           key={todo.id}
         />
       ))}

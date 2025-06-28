@@ -1,19 +1,54 @@
 import React from "react";
+import toast from "react-hot-toast";
+import { v4 as uuidv4 } from "uuid";
 
-const TodoForm = ({ setTodolist }) => {
-  // State to update the todo list
+const TodoForm = ({
+  setTodolist,
+  isediting,
+  setIsediting,
+  currenttodo,
+  setCurrenttodo,
+}) => {
+  // Reset All States when a Function is fufilled
+  const resetStates = () => {
+    setIsediting(false)
+    setCurrenttodo({
+      id:"",
+      title:"",
+      description:""
+    })
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const newTodo = {
-      id: Date.now(),
-      title: formData.get("title"),
-      description: formData.get("description"),
-      completed: false,
-    };
-    // todolist.push(newTodo);
-    setTodolist((prevTodos) => [...prevTodos, newTodo]);
-    e.target.reset();
+    if (isediting) {
+      // Update the Todo list
+      setTodolist((prevTodos) =>
+        prevTodos.map((todo) => {
+          todo.id === currenttodo.id ? currenttodo : todo;
+        })
+      );
+    } else {
+      // Add item
+      const newTodo = {
+        id: uuidv4(),
+        title: currenttodo.title,
+        description: currenttodo.description,
+        completed: false,
+      };
+      // todolist.push(newTodo);
+      setTodolist((prevTodos) => [newTodo, ...prevTodos]);
+      e.target.reset();
+    }
+
+    // Resets all states
+    resetStates()
+    // Pops up completed messages
+    toast.completed(
+      isediting
+        ? "You Todo has been successfully added"
+        : "Your Task has been successfully added!"
+    );
   };
 
   return (
